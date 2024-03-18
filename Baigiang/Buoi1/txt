@@ -1,0 +1,2 @@
+- tsc (typeScript Conpiler): dịch typeScript sang javaScript
+- ts-node -tên file- : chạy file ts
