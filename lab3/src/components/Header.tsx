@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Header: React.FC = () => {
     return (
@@ -6,17 +7,14 @@ const Header: React.FC = () => {
             <div className='container-fluid'>
                 <ul className='navbar-nav'>
                     <li className='nav-item'>
-                        <a className='nav-link text-light ' href='#'>
+                        <Link to="" className='nav-link text-light '>
                             Trang chủ
-                        </a>
+                        </Link>
                     </li>
                     <li className='nav-item'>
-                        <a className='nav-link text-light' href='#'>
+                        <Link to="" className='nav-link text-light'>
                             Sản phẩm
-                        </a>
-                    </li>
-                    <li className='nav-item'>
-                        <a className='nav-link text-light' href='#' />
+                        </Link>
                     </li>
                 </ul>
             </div>

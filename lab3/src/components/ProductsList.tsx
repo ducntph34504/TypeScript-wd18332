@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
+import { TProduct } from '~/interfaces/product'
+import style from './ProductList.module.scss'
 
 const ProductsList = () => {
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState<TProduct[]>([])
 
     useEffect(() => {
         fetch('http://localhost:3000/products')
@@ -17,22 +19,16 @@ const ProductsList = () => {
     return (
         <div>
             <h1 className='mt-3 mb-3'>Danh sách sản phẩm</h1>
-            {products.map((item, index) => (
-                <div className='row d-flex mt-3 mb-3' key={index}>
-                  <div className='col'>1
-                    
-                  </div>
-                  <div className='col'>2
-                  
-                  </div>
-                  <div className='col'>3
-                  
-                  </div>
-                  <div className='col'>4
-                  
-                  </div>
+            <div className={style.container}>
+            {products.map((item) => (
+                <div className={style.productCart} key={item.id}>
+                    <img src={item.thumbnail} alt={item.title} />
+                    <h3 className='mt-3'>{item.title}</h3>
+                    <p>{"$"}{item.price}</p>
+                    <button className='btn btn-success mt-4'>Add to cart</button>
                 </div>
             ))}
+            </div>
         </div>
     )
 }
