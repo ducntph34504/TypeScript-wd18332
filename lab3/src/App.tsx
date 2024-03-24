@@ -1,12 +1,12 @@
 import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import Footer from './components/Footer'
-import Header from './components/Header'
+import Footer from './components/footer/Footer'
+import Header from './components/header/Header'
 import Shop from './pages/Shop'
-import Home from './pages/Home'
+import Home from './pages/home/Home.tsx'
 import Login from './pages/Login'
 import Register from './pages/Register'
-import ProductsDetail from './pages/ProductsDetail'
+import ProductsDetail from './pages/productsDetail/ProductsDetail'
 import NotFound from './pages/NotFound'
 
 
