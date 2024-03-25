@@ -7,7 +7,7 @@ import Home from './pages/home/Home.tsx'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import ProductsDetail from './pages/productsDetail/ProductsDetail'
-import NotFound from './pages/NotFound'
+import NotFound from './pages/notFound/NotFound.tsx'
 
 
 const App: React.FC = () => {
