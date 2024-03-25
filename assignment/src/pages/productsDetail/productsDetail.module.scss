@@ -1,0 +1,39 @@
+.detail {
+  margin-top: 70px;
+  min-height: 700px;
+  justify-content: center;
+  img {
+    height: 400px;
+    width: 600px;
+    border-radius: 20px;
+  }
+  h1 {
+    font-weight: 700;
+  }
+  h2 {
+    color: red;
+  }
+  h4 {
+    font-weight: 700;
+    margin-top: 20px;
+  }
+}
+
+.desc {
+  text-align: justify;
+  width: 100%;
+  margin-left: 40px;
+  select {
+    width: 150px;
+  }
+  input {
+    width: 50px;
+    height: 40px;
+    padding-left: 10px;
+    margin-right: 10px;
+  }
+  button {
+    padding: 6px 20px;
+    margin-right: 5px ;
+  }
+}

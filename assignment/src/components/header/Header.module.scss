@@ -1,0 +1,13 @@
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  a {
+    text-decoration: none;
+    margin: 20px 10px;
+    color: #fff;
+  }
+  a:hover {
+    color: red;
+  }
+}
