@@ -16,7 +16,11 @@ const ProductsDetail: React.FC = (props: Props) => {
             setProducts(data)
         }
         getProducts()
-    }, [])
+    }, []);
+
+    const onHandleChange = () => {
+      
+    }
 
     return (
         <div className={style.detail}>
@@ -27,16 +31,21 @@ const ProductsDetail: React.FC = (props: Props) => {
                 <div className={style.desc}>
                     <div className='container'>
                         <h1>{product?.title}</h1>
-                        <h2>Product price: {'$'}{product?.price}</h2>
+                        <h2>
+                            Product price: {'$'}
+                            {product?.price}
+                        </h2>
                         <select className='col-lg-12 my-3'>
-                          <option>Select color</option>
-                          <option>Black</option>
-                          <option>White</option>
-                          <option>Pink</option>
-                          <option>Red</option>
-                        </select><br />
-                        <input type="number"/>
-                        <button className='btn btn-success mb-2'>Add to cart</button><button className='btn btn-danger mb-2'>Buy now</button>
+                            <option>Select color</option>
+                            <option>Black</option>
+                            <option>White</option>
+                            <option>Pink</option>
+                            <option>Red</option>
+                        </select>
+                        <br />
+                        <input type='number' value={1} onChange={onHandleChange}/>
+                        <button className='btn btn-success mb-2'>Add to cart</button>
+                        <button className='btn btn-danger mb-2'>Buy now</button>
                         <h4>Description: {product?.description}</h4>
                     </div>
                 </div>
