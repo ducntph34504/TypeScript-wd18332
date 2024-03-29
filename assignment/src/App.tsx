@@ -3,7 +3,6 @@ import './App.css'
 import Footer from './components/footer/Footer'
 import Header from './components/header/Header'
 import Shop from './pages/Shop'
-import Home from './pages/home/Home.tsx'
 import Login from './pages/login/Login.tsx'
 import Register from './pages/register/Register.tsx'
 import ProductsDetail from './pages/productsDetail/ProductsDetail'
@@ -15,8 +14,7 @@ const App: React.FC = () => {
         <>
             <Header />
             <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/shop' element={<Shop />} />
+                <Route index element={<Shop />} />
                 <Route path="/shop/:productId" element={<ProductsDetail />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />

@@ -4,7 +4,7 @@ import style from './notFound.module.scss'
 const NotFound: React.FC = () => {
   return (
     <div className={style.notFound}>
-        NotFound Page
+        <h1>NotFound Page</h1>
     </div>
   )
 }
