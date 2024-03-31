@@ -8,9 +8,14 @@ import { useNavigate } from 'react-router-dom';
 const productSchema = Joi.object({
 	title: Joi.string().required().min(3).max(255),
 	price: Joi.number().required().min(0),
+  description: Joi.string().allow(''),
 });
 
-const AddProduct = (props: { onAdd: () => {}}) => {
+type Props = {
+  onAdd: (products: TProduct) => void;
+}
+
+const AddProduct = ({ onAdd }: Props ) => {
 	const navigate = useNavigate();
 	const {
 		register,
@@ -21,7 +26,7 @@ const AddProduct = (props: { onAdd: () => {}}) => {
 	});
 
 const onSubmit: SubmitHandler<TProduct> = (product) => {
-  props.onAdd(product);
+  onAdd(product);
   navigate('/admin');
 };
 
@@ -30,21 +35,21 @@ const onSubmit: SubmitHandler<TProduct> = (product) => {
 			<h2>AddProduct</h2>
 			<form onSubmit={handleSubmit(onSubmit)} encType=''>
 				<div className={style.formGroup}>
-					<label htmlFor="title">Title product</label>
+					<label htmlFor="title">Product Title</label>
 					<input type="text" placeholder="title" {...register('title', {required:true, minLength: 1, maxLength: 255})} />
 					{errors.title && <p>{errors.title.message}</p>}
 				</div>
-				<div className="formGroup">
-					<label htmlFor="price">Price product</label>
+				<div className={style.formGroup}>
+					<label htmlFor="price">Product Price</label>
 					<input type="number" placeholder="price" {...register('price', {required:true, min: 0})} />
 					{errors.price && <p>{errors.price.message}</p>}
 				</div>
-        <div className="formGroup">
-					<label htmlFor="price">Description</label>
+        <div className={style.formGroup}>
+					<label htmlFor="description">Product Description</label>
 					<input type="text" placeholder="desc" {...register('description')} />
 				</div>
-				<div className="formGroup">
-					<button type="submit">Add Product</button>
+				<div className={style.formGroup}>
+					<button className='btn btn-primary w-100' type="submit">Add Product</button>
 				</div>
 			</form>
 		</div>

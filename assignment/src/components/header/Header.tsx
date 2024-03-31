@@ -17,6 +17,19 @@ const Header: React.FC = () => {
                                 Sản phẩm
                             </a>
                         </li>
+                        <li className='nav-item'>
+                            <a href='/login' className=''>
+                                Đăng nhập
+                            </a>
+                            <a href='/register' className=''>
+                                Đăng ký
+                            </a>
+                        </li>
+                        <li className='nav-item'>
+                            <a href='/admin' className=''>
+                                adminPage
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>

@@ -15,46 +15,44 @@ import { createProduct } from './apis/product.tsx'
 import Shop from './pages/shop/Shop.tsx'
 
 const App: React.FC = () => {
-  const [products, setProducts] = useState<TProduct[]>([]);
+    const [products, setProducts] = useState<TProduct[]>([])
 
-	useEffect(() => {
-		const fetchProducts = async () => {
-			const { data } = await instance.get(`/products`);
-			setProducts(data);
-		};
-		fetchProducts();
-	}, []);
+    useEffect(() => {
+        const fetchProducts = async () => {
+            const { data } = await instance.get(`/products`)
+            setProducts(data)
+        }
+        fetchProducts()
+    }, [])
 
-	const handleSubmit = (product: TProduct) => {
-		async () => {
-			const data = await createProduct(product);
-			setProducts([...products, data]);
-		};
-	};
+    const handleSubmit = (product: TProduct) => {
+        ;async () => {
+            const data = await createProduct(product)
+            setProducts([...products, data])
+        }
+    }
 
-  return (
-    <>
-      <Header />
-      <Routes>
-          <main id='main' className='container'>
-              <Routes>
-                  <Route path='/'>
-                      <Route index element={<Shop products={products}/>} />
-                      <Route path='/shop/:productId' element={<ProductsDetail />} />
-                      <Route path='/login' element={<Login />} />
-                      <Route path='/register' element={<Register />} />
-                  </Route>
-                  <Route path='/admin'>
-                      <Route index element={<Dashboard products={products} />} />
-                      <Route path='/admin/add' element={<AddProduct onAdd={handleSubmit} />} />
-                  </Route>
-                  <Route path='*' element={<NotFound />} />
-              </Routes>
-          </main>
-      </Routes>
-      <Footer />
-    </>
-  )
+    return (
+        <>
+            <Header />
+            <main id='main' className=''>
+                <Routes>
+                    <Route path='/'>
+                        <Route index element={<Shop products={products} />} />
+                        <Route path='/shop/:productId' element={<ProductsDetail />} />
+                        <Route path='/login' element={<Login />} />
+                        <Route path='/register' element={<Register />} />
+                    </Route>
+                    <Route path='/admin'>
+                        <Route index element={<Dashboard products={products} />} />
+                        <Route path='/admin/add' element={<AddProduct onAdd={handleSubmit} />} />
+                    </Route>
+                    <Route path='*' element={<NotFound />} />
+                </Routes>
+            </main>
+            <Footer />
+        </>
+    )
 }
 
 export default App

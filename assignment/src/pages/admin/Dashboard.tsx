@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { TProduct } from '~/interfaces/product';
+import './Dashboard.module.scss'
 
 type Props = {
 	products: TProduct[];
@@ -8,7 +9,7 @@ type Props = {
 
 const Dashboard: React.FC<Props> = ({ products }) => {
 	return (
-		<div>
+		<div className='container'>
 			<h1>Hello, admin</h1>
 			<Link className="btn btn-primary" to="/admin/add">
 				Add new product
@@ -22,7 +23,7 @@ const Dashboard: React.FC<Props> = ({ products }) => {
 						<th>Price</th>
 						<th>Thumbnail</th>
 						<th>Description</th>
-						<th>Action</th>
+						<th colSpan={2}>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -36,9 +37,11 @@ const Dashboard: React.FC<Props> = ({ products }) => {
 							</td>
 							<td>{item.description}</td>
 							<td>
-								<button className="btn btn-danger">Delete</button>{' '}
-								<button className="btn btn-warning">Edit</button>
+								<button className="btn btn-danger">Delete</button>
 							</td>
+              <td>
+								<button className="btn btn-warning">Edit</button>
+              </td>
 						</tr>
 					))}
 				</tbody>

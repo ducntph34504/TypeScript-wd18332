@@ -1,5 +1,5 @@
 import { TProduct } from '~/interfaces/product'
-import style from './ProductList.module.scss'
+import style from './Shop.module.scss'
 
 type Props = {
   products: TProduct[];
