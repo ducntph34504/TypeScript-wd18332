@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { TProduct } from '~/interfaces/product';
-import './Dashboard.module.scss'
+import './style/Dashboard.css';
 
 type Props = {
 	products: TProduct[];

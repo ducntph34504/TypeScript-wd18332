@@ -13,11 +13,6 @@ const Header: React.FC = () => {
                             </a>
                         </li>
                         <li className='nav-item'>
-                            <a href='/shop' className=''>
-                                Sản phẩm
-                            </a>
-                        </li>
-                        <li className='nav-item'>
                             <a href='/login' className=''>
                                 Đăng nhập
                             </a>

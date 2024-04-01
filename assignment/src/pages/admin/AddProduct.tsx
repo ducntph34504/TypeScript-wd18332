@@ -2,7 +2,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { TProduct } from '~/interfaces/product';
 import Joi from 'joi';
 import { joiResolver } from '@hookform/resolvers/joi';
-import style from './Form.module.scss';
+import style from './style/Form.module.scss';
 import { useNavigate } from 'react-router-dom';
 
 const productSchema = Joi.object({
@@ -25,7 +25,7 @@ const AddProduct = ({ onAdd }: Props ) => {
 		resolver: joiResolver(productSchema),
 	});
 
-const onSubmit: SubmitHandler<TProduct> = (product) => {
+const onSubmit = (product: TProduct) => {
   onAdd(product);
   navigate('/admin');
 };
