@@ -1,47 +1,64 @@
-import { Route, Routes } from 'react-router-dom'
-import './App.css'
-import Footer from './components/footer/Footer'
-import Header from './components/header/Header'
-import Login from './pages/login/Login.tsx'
-import Register from './pages/register/Register.tsx'
-import ProductsDetail from './pages/productsDetail/ProductsDetail'
-import NotFound from './pages/notFound/NotFound.tsx'
-import AddProduct from './pages/admin/AddProduct.tsx'
-import Dashboard from './pages/admin/Dashboard.tsx'
-import { useEffect, useState } from 'react'
-import instance from './apis/index.tsx'
-import { TProduct } from './interfaces/product.ts'
-import { createProduct } from './apis/product.tsx'
-import Shop from './pages/shop/Shop.tsx'
+import { Route, Routes } from 'react-router-dom';
+import './App.css';
+import Footer from './components/footer/Footer';
+import Header from './components/header/Header';
+import Login from './pages/login/Login.tsx';
+import Register from './pages/register/Register.tsx';
+import ProductsDetail from './pages/productsDetail/ProductsDetail';
+import NotFound from './pages/notFound/NotFound.tsx';
+import AddProduct from './pages/admin/AddProduct.tsx';
+import Dashboard from './pages/admin/Dashboard.tsx';
+import { useEffect, useState } from 'react';
+import instance from './apis/index.tsx';
+import { TProduct } from './interfaces/product.ts';
+import { createProduct } from './apis/product.tsx';
+import Shop from './pages/shop/Shop.tsx';
+import { onRegister, onLogin } from './apis/auth.tsx';
+import { User } from './interfaces/User.ts';
 
 const App: React.FC = () => {
-    const [products, setProducts] = useState<TProduct[]>([])
+    const [products, setProducts] = useState<TProduct[]>([]);
+    const [users, setUsers] = useState<User[]>([]);
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            const { data } = await instance.get(`/products`)
-            setProducts(data)
-        }
-        fetchProducts()
+      const fetchProducts = async () => {
+          const { data } = await instance.get(`/products`);
+          setProducts(data);
+      }
+      fetchProducts();
     }, [])
 
     const handleSubmit = (product: TProduct) => {
-        ;async () => {
-            const data = await createProduct(product)
-            setProducts([...products, data])
-        }
+      async () => {
+          const data = await createProduct(product);
+          setProducts([...products, data]);
+      }
+    }
+
+    const handleRegister = (user: User) => {
+      (async () => {
+          const data = await onRegister(user);
+          setUsers([...users, data]);
+      })()
+    }
+
+    const handleLogin = (user: User) => {
+      (async () => {
+          const data = await onLogin(user);
+          setUsers(data);
+      })()
     }
 
     return (
         <>
             <Header />
-            <main id='main' className=''>
+            
                 <Routes>
                     <Route path='/'>
                         <Route index element={<Shop products={products} />} />
                         <Route path='/shop/:productId' element={<ProductsDetail />} />
-                        <Route path='/login' element={<Login />} />
-                        <Route path='/register' element={<Register />} />
+                        <Route path='/login' element={<Login onLogin={handleLogin}/>} />
+                        <Route path='/register' element={<Register onRegister={handleRegister} />} />
                     </Route>
                     <Route path='/admin'>
                         <Route index element={<Dashboard products={products} />} />
@@ -49,7 +66,7 @@ const App: React.FC = () => {
                     </Route>
                     <Route path='*' element={<NotFound />} />
                 </Routes>
-            </main>
+            
             <Footer />
         </>
     )

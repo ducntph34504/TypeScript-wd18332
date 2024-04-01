@@ -32,21 +32,21 @@ const onSubmit = (product: TProduct) => {
 
 	return (
 		<div className='container'>
-			<h2>AddProduct</h2>
 			<form onSubmit={handleSubmit(onSubmit)} encType=''>
+        <h2>AddProduct</h2>
 				<div className={style.formGroup}>
 					<label htmlFor="title">Product Title</label>
-					<input type="text" placeholder="title" {...register('title', {required:true, minLength: 1, maxLength: 255})} />
+					<input className='form-control' type="text" placeholder="title" {...register('title', {required:true, minLength: 1, maxLength: 255})} />
 					{errors.title && <p>{errors.title.message}</p>}
 				</div>
 				<div className={style.formGroup}>
 					<label htmlFor="price">Product Price</label>
-					<input type="number" placeholder="price" {...register('price', {required:true, min: 0})} />
+					<input className='form-control' type="number" placeholder="price" {...register('price', {required:true, min: 0})} />
 					{errors.price && <p>{errors.price.message}</p>}
 				</div>
         <div className={style.formGroup}>
 					<label htmlFor="description">Product Description</label>
-					<input type="text" placeholder="desc" {...register('description')} />
+					<input className='form-control' type="text" placeholder="desc" {...register('description')} />
 				</div>
 				<div className={style.formGroup}>
 					<button className='btn btn-primary w-100' type="submit">Add Product</button>

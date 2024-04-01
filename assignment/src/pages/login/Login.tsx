@@ -2,6 +2,7 @@ import { joiResolver } from '@hookform/resolvers/joi';
 import Joi from 'joi';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import style from './FormLogin.module.scss'
 import { User } from '~/interfaces/User';
 
 const loginSchema = Joi.object({
@@ -28,10 +29,10 @@ const Login = ({ onLogin }: Props) => {
 		navigate('/admin');
 	};
 	return (
-		<div>
+		<div className={style.container}>
 			<form onSubmit={handleSubmit(onSubmit)}>
-				<h2>Register</h2>
-				<div className='form-control w-100'>
+				<h2>Login</h2>
+				<div className={style.formGroup}>
 					<label htmlFor="email">Email</label>
 					<input
 						className="form-control"
@@ -43,7 +44,7 @@ const Login = ({ onLogin }: Props) => {
 					/>
 					{errors.email && <p>{errors.email.message}</p>}
 				</div>
-				<div className='form-control w-100'>
+				<div className={style.formGroup}>
 					<label htmlFor="password">Password</label>
 					<input
 						className="form-control"
@@ -57,7 +58,7 @@ const Login = ({ onLogin }: Props) => {
 					/>
 					{errors.password && <p>{errors.password.message}</p>}
 				</div>
-				<div className='form-control w-100'>
+				<div className={style.formGroup}>
 					<button className="btn btn-primary w-100" type="submit">
 						Register
 					</button>

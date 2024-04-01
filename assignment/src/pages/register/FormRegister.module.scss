@@ -7,7 +7,6 @@ form {
 	margin: 0 auto;
 	label,
 	input {
-    font-weight: 700;
 		display: block;
 		width: 100%;
 	}
@@ -17,5 +16,6 @@ form {
 }
 
 .container {
-  margin-top: 100px;
+  min-height: 700px;
+  margin-top: 150px;
 }

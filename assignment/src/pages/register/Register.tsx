@@ -2,10 +2,11 @@ import { joiResolver } from '@hookform/resolvers/joi';
 import Joi from 'joi';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import style from './FormRegister.module.scss';
 import { User } from '~/interfaces/User';
 
 const registerSchema = Joi.object({
-	email: Joi.string().email({tlds: false}).required().min(2).max(255),
+	email: Joi.string().email({tlds: false}).required().min(8).max(255),
 	password: Joi.string().required().min(6).max(255),
 });
 
@@ -28,26 +29,28 @@ const Register = ({ onRegister }: Props) => {
 		navigate('/login');
 	};
 	return (
-		<div>
+		<div className={style.container}>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<h2>Register</h2>
-				<div className='form-control w-100'>
+				<div className={style.formGroup}>
 					<label htmlFor="email">Email</label>
 					<input
+            className='form-control'
 						type="email"
 						placeholder="email"
 						{...register('email', {
 							required: true,
-							minLength: 2,
+							minLength: 8,
 							maxLength: 255,
 						})}
 					/>
 					{errors.email && <p>{errors.email.message}</p>}
 				</div>
-				<div className='form-control w-100'>
+				<div className={style.formGroup}>
 					<label htmlFor="password">Password</label>
 					<input 
-						type="text"
+            className='form-control'
+						type="password"
 						placeholder="password"
 						{...register('password', {
 							required: true,
@@ -57,7 +60,7 @@ const Register = ({ onRegister }: Props) => {
 					/>
 					{errors.password && <p>{errors.password.message}</p>}
 				</div>
-				<div className='form-control w-100'>
+				<div className={style.formGroup}>
 					<button className="btn btn-primary w-100" type="submit">
 						Register
 					</button>

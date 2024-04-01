@@ -1,3 +1,7 @@
+.container {
+  min-height: 700px;
+  margin-top: 150px;
+}
 form {
 	width: 600px;
 	max-width: 100%;
@@ -7,15 +11,10 @@ form {
 	margin: 0 auto;
 	label,
 	input {
-    font-weight: 700;
 		display: block;
 		width: 100%;
 	}
 	.formGroup {
 		margin-bottom: 24px;
 	}
-}
-
-.container {
-  margin-top: 100px;
 }
