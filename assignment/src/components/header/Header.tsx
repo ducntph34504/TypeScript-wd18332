@@ -1,5 +1,6 @@
 import React from 'react'
 import style from './Header.module.scss'
+import { Link } from 'react-router-dom'
 
 const Header: React.FC = () => {
     return (
@@ -8,22 +9,22 @@ const Header: React.FC = () => {
                 <div className='container-fluid'>
                     <ul className='navbar-nav'>
                         <li className='nav-item'>
-                            <a href='/' className=''>
+                            <Link to='/' className=''>
                                 Trang chủ
-                            </a>
+                            </Link>
                         </li>
                         <li className='nav-item'>
-                            <a href='/login' className=''>
+                            <Link to='/login' className=''>
                                 Đăng nhập
-                            </a>
-                            <a href='/register' className=''>
+                            </Link>
+                            <Link to='/register' className=''>
                                 Đăng ký
-                            </a>
+                            </Link>
                         </li>
                         <li className='nav-item'>
-                            <a href='/admin' className=''>
+                            <Link to='/admin' className=''>
                                 adminPage
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>

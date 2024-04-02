@@ -4,17 +4,14 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import style from './FormRegister.module.scss';
 import { User } from '~/interfaces/User';
+import instance from '~/apis';
 
 const registerSchema = Joi.object({
 	email: Joi.string().email({tlds: false}).required().min(8).max(255),
 	password: Joi.string().required().min(6).max(255),
 });
 
-type Props = {
-	onRegister: (user: User) => void;
-};
-
-const Register = ({ onRegister }: Props) => {
+const Register = () => {
 	const navigate = useNavigate();
 	const {
 		register,
@@ -24,9 +21,12 @@ const Register = ({ onRegister }: Props) => {
 		resolver: joiResolver(registerSchema),
 	});
 
-	const onSubmit: SubmitHandler<User> = (user) => {
-		onRegister(user);
-		navigate('/login');
+	const onSubmit = (user: User) => {
+		(async () => {
+      const { data } = await instance.post('/register', user);
+      console.log(data);
+    })()
+		// navigate('/login');
 	};
 	return (
 		<div className={style.container}>

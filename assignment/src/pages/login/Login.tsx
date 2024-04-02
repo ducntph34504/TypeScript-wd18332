@@ -10,11 +10,7 @@ const loginSchema = Joi.object({
 	password: Joi.string().required().min(6).max(255),
 });
 
-type Props = {
-	onLogin: (user: User) => void;
-};
-
-const Login = ({ onLogin }: Props) => {
+const Login = () => {
 	const navigate = useNavigate();
 	const {
 		register,
@@ -24,9 +20,9 @@ const Login = ({ onLogin }: Props) => {
 		resolver: joiResolver(loginSchema),
 	});
 
-	const onSubmit: SubmitHandler<User> = (user) => {
-		onLogin(user);
-		navigate('/admin');
+	const onSubmit = (user: User) => {
+		
+		// navigate('/admin');
 	};
 	return (
 		<div className={style.container}>
