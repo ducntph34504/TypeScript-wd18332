@@ -9,3 +9,4 @@ export const createProduct = async (product: TProduct) => {
 		console.log(error);
 	}
 };
+

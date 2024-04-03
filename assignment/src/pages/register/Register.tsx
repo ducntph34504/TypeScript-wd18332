@@ -1,10 +1,10 @@
 import { joiResolver } from '@hookform/resolvers/joi';
 import Joi from 'joi';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import style from './FormRegister.module.scss';
 import { User } from '~/interfaces/User';
-import instance from '~/apis';
+import instance from '~/apis/index';
 
 const registerSchema = Joi.object({
 	email: Joi.string().email({tlds: false}).required().min(8).max(255),
@@ -25,8 +25,14 @@ const Register = () => {
 		(async () => {
       const { data } = await instance.post('/register', user);
       console.log(data);
+      if(data.user){
+        const isConfirm = confirm("Register success!, switch to login page!");
+        if(isConfirm){
+          navigate('/login');
+        }
+      } 
+
     })()
-		// navigate('/login');
 	};
 	return (
 		<div className={style.container}>

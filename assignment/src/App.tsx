@@ -14,6 +14,7 @@ import { TProduct } from './interfaces/product.ts'
 import { createProduct } from './apis/product.tsx'
 import Shop from './pages/shop/Shop.tsx'
 import { User } from './interfaces/User.ts'
+import EditProduct from './pages/admin/EditProduct.tsx'
 
 const App: React.FC = () => {
     const [products, setProducts] = useState<TProduct[]>([])
@@ -28,11 +29,28 @@ const App: React.FC = () => {
     }, [])
 
     const handleSubmit = (product: TProduct) => {
-        ;async () => {
+        ;(async () => {
             const data = await createProduct(product)
             setProducts([...products, data])
-        }
+        })()
     }
+
+    const handleEdit = (product: TProduct) => {
+        ;(async () => {
+            const { data } = await instance.put(`/products/${product.id}`, product)
+            setProducts(products.map((item) => (item.id === data.id ? data : item)))
+        })()
+    }
+
+    const handleDelete = (id: Number) => {
+        ;(async () => {
+            const isConfirm = confirm('You want to delete me? (ToT)')
+            if (isConfirm) {
+                await instance.delete(`/products/${id}`)
+                setProducts(products.filter((item) => item.id !== id && item))
+            }
+        })()
+    }   
 
     return (
         <>
@@ -45,8 +63,9 @@ const App: React.FC = () => {
                     <Route path='/register' element={<Register />} />
                 </Route>
                 <Route path='/admin'>
-                    <Route index element={<Dashboard products={products} />} />
+                    <Route index element={<Dashboard onDelete={handleDelete} products={products} />} />
                     <Route path='/admin/add' element={<AddProduct onAdd={handleSubmit} />} />
+                    <Route path='/admin/edit/:id' element={<EditProduct onSubmit={handleEdit} />} />
                 </Route>
                 <Route path='*' element={<NotFound />} />
             </Routes>

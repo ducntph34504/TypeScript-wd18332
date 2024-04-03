@@ -1,5 +1,6 @@
 import { TProduct } from '~/interfaces/product'
 import style from './Shop.module.scss'
+import { Link } from 'react-router-dom';
 
 type Props = {
   products: TProduct[];
@@ -15,7 +16,7 @@ const Shop: React.FC<Props> = ({ products }) => {
                 <a href={`/shop/${item.id}`}><img src={item.thumbnail} alt={item.title} /></a>
                 <a href={`/shop/${item.id}`}><h3 className='mt-3'>{item.title}</h3></a>
                 <p>{"$"}{item.price}</p>
-                <button className='btn btn-success mt-4 mx-1'>Add to cart</button><button className='btn btn-danger mt-4 mx-1'>Buy now</button>
+                <Link to={`/shop/${item.id}`} className='btn btn-success mt-4 mx-1'>Add to cart</Link><Link to={`/shop/${item.id}`} className='btn btn-danger mt-4 mx-1'>Buy now</Link>
             </div>
         ))}
         </div>

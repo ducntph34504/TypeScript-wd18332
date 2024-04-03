@@ -1,13 +1,13 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { TProduct } from '~/interfaces/product';
 import './style/Dashboard.css';
 
 type Props = {
 	products: TProduct[];
+  onDelete: (id: number) => void;
 };
 
-const Dashboard: React.FC<Props> = ({ products }) => {
+const Dashboard = ({ products, onDelete }: Props) => {
 	return (
 		<div className='container'>
 			<h1>Hello, admin</h1>
@@ -37,10 +37,10 @@ const Dashboard: React.FC<Props> = ({ products }) => {
 							</td>
 							<td>{item.description}</td>
 							<td>
-								<button className="btn btn-danger">Delete</button>
+								<button onClick={() => onDelete(Number(item.id))} className="btn btn-danger">Delete</button>
 							</td>
               <td>
-								<button className="btn btn-warning">Edit</button>
+								<Link to={`/admin/edit/${item.id}`} className="btn btn-warning">Edit</Link>
               </td>
 						</tr>
 					))}
